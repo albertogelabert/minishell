@@ -1,38 +1,38 @@
-1) Abrir una terminal con ctrl+Alt+t
+# Minishell
 
-Compilación del archivo:
+This is a simple shell for linux that executes intern and exetern commands in foreground and background. 
+## Compilation
+Just use the makefile as:
 
-* Antes de poder ejecutar el programa por primera vez, debe compilarlo. Para ello, haga lo siguiente:
+```sh
+$ make
+```
+This will compile the project and create the executable. It is always highly recommendable to clean all the *.o and executable files. To do  this, simply do: 
+```sh
+$ make clean
+```
+If an error appears when you do the make, that must be the readline library. Make sure you have it. To ensure, type: 
+```sh
+$ apt-cache search readline
+```
+If the library is already installed, you will see a list of packages. Two of those have to be libreadline and libreadline-dev. If you dont have it, simply write: 
+```sh
+$ apt-get install libreadline6 libreadline6-dev
+```
+If it still not working, do this:
+```sh
+$ gcc -o shell shell.c -L/usr/local/lib -I/usr/local/include -lreadline
+```
+### Execution
+Launch the exetuable: 
+```sh
+$ ./shell
+```
+Now you are running the minishell. 
 
-2) Utilice el comando cd para situarse en el directorio que contiene la carpeta con los archivos fuente.
-3) Descomprimir la carpeta, por ejemplo, usando el comando  tar xvzf nombre_carpeta.tar.gz
-4) Escribir el comando make, o make all para compilar todos los archivos fuente
+List of funtionalities:
+* Inter and extern command interpreter
+* Extern command in foreground and background. 
+* Output redirection
+* Use up and down arrow
 
-
-Ejecutar:
-
-5) Para ejecutar el programa shell escriba en la terminal ./shell
-
-**   Es recomendable ejecutar make clean antes de hacer 4) para evitar posibles errores de compilación y/o ejecución.
-***  Los pasos 3-4 sólo son necesarios la primera vez que quiera ejecutar el programa. Las siguientes veces basta con seguir los pasos 1, 2 y 5.
-**** Recuerde: para salir de una terminal escriba el comando exit y pulse Enter, o CTRL+C
-**** Si al ejecutar el comando make, aparece un error, se debe a un problema con la librería readline, para solucionarlo:
-	A) Asegúrese de que tiene instalada dicha librería escribiendo en la terminal
-	lo siguiente: apt-cache search readline
-	Si la librería está instalada, le aparecerán una lista de paquetes. Para trabajar con readline y poder ejecutar MY_SHELL, deberá 	aparecer:
-		- libreadline: para poder correr aplicaciones que usan readline, como MY_SHELL.
-		- libreadline-dev: para poder desarrollar aplicaciones que usan readline, y a efectos de compilación.
-	En caso de no tener instalados dichos paquetes, escriba en la terminal:
-	sudo apt-get install libreadline6 libreadline6-dev
-	B) Si ha comprobado A) y sigue generando un error, se debe a que diferentes versiones de Linux intentan acceder a la librería 		readline desde una carpeta diferente. Para solucionarlo, escriba en el terminal:
-	gcc -o shell shell.c -L/usr/local/lib -I/usr/local/include -lreadline
-
-
-Funcionalidades del programa:
-
-My_Shell implementa las siguientes funcionalidades:
-
- - Intérprete de comandos internos y externos.
- - Ejecución de comandos externos en foreground y background.
- - Redireccionamiento de salida estándar, de modo que se guarde la ejecución de un comando externo en un fichero.
-Hemos añadido la librería readline, que permite guardar los comandos introducidos anteriormente en MY_SHELL y moverse con las flechas.
